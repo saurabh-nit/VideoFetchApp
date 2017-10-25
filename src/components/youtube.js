@@ -4,14 +4,24 @@ import React, { Component } from 'react';
    const baseUrl = 'https://www.googleapis.com/youtube/v3/channels?part=snippet&forUsername='
    const channel_Name = 'thenewboston'
    let ChannelID = ''
-   const count = 3
+   const count = 5
    let finalURL = `${baseUrl}${channel_Name}&key=${API_KEY}`
    //  const search = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${ChannelID}&part=snippet,id&order=date&maxResults=${Results}`
    const search = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}`
 
    class Youtube extends Component {
+     constructor(props) {
+       super(props);
+       this.state = {
+          videoArray:[]
+       };
+     }
 
     componentDidMount(){
+      console.log('Component LOADED');
+    }
+
+    loadVideos = () =>{
       console.log('FINAL URL:', finalURL);
       console.log('Base Search URL:', search);
       fetch(finalURL)
@@ -37,20 +47,30 @@ import React, { Component } from 'react';
       .then(res=>{ return res.json()})
       .then(data=>{
         console.log('final response:', data);
+        const videoArray = data.items.map(obj => 'https://www.youtube.com/embed/'+obj.id.videoId);
+        console.log('VIDEO ARRAY:',videoArray);
+        this.setState({videoArray: videoArray})
+        console.log('STATE:',this.state.videoArray);
       })
     }
 
   render(){
+    console.log('STATE IN RENDER:',this.state.videoArray);
     return(
       <div className="mainComponent">
       <div>
-        <button>Get Youtube Video List</button>
+        <button className="getButton" onClick={this.loadVideos}>Get Youtube Video List</button>
       </div>
-       <iframe width="360" height="150"
-       src="https://www.youtube.com/embed/-AbaV3nrw6E"
-       frameBorder="0"
-       allowFullScreen>
-       </iframe>
+
+        {
+          this.state.videoArray.map( (address, i)=>{
+            console.log('address',address);
+            var frame = <div className="video" key = {i} > <iframe width="400" height="200" src={address} frameBorder="0" allowFullScreen> </iframe></div>
+            return frame;
+          })
+        }
+        {this.frame}
+
       </div>
     )
   }

@@ -4,7 +4,7 @@ class MainPageComponent extends Component {
   render(){
     return(
       <div>
-      SAURABH MISHRA ++++++++++++
+      This is Main Component
       </div>
     )
   }

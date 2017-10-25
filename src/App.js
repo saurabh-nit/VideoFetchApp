@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import MainPageComponent from './components/mainPageComponent';
 import Youtube from './components/youtube.js';
 import './App.css';
@@ -8,8 +7,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <MainPageComponent>
-        </MainPageComponent>
+        <MainPageComponent></MainPageComponent>
         <Youtube></Youtube>
       </div>
     );
