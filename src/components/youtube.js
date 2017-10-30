@@ -4,7 +4,7 @@ import React, { Component } from 'react';
    const baseUrl = 'https://www.googleapis.com/youtube/v3/channels?part=snippet&forUsername='
    const channel_Name = 'thenewboston'
    let ChannelID = ''
-   const count = 5
+   const count = 7
    let finalURL = `${baseUrl}${channel_Name}&key=${API_KEY}`
    //  const search = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${ChannelID}&part=snippet,id&order=date&maxResults=${Results}`
    const search = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}`
